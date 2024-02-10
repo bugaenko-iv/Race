@@ -63,6 +63,16 @@ namespace Гонки.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap гоночный_балид {
+            get {
+                object obj = ResourceManager.GetObject("гоночный балид", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap флаги {
             get {
                 object obj = ResourceManager.GetObject("флаги", resourceCulture);

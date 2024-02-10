@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -13,6 +14,8 @@ namespace Гонки
 {
     public partial class Form1 : Form
     {
+        int mlseconds = 0;
+
         public Form1()
         {
             InitializeComponent();
@@ -22,6 +25,7 @@ namespace Гонки
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            timer1.Enabled = true;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -82,6 +86,35 @@ namespace Гонки
         private void guna2HtmlLabel3_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+        }
+
+        int numY = 331;
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            mlseconds++;
+
+            if (mlseconds == 40)
+            {
+                pictureBox2.Visible = true;
+            }
+
+            if (pictureBox2.Visible == true && numY != 12)
+            {
+                pictureBox2.Location = new Point(x: 45, y: numY);
+                numY-=7;
+                pictureBox2.Refresh();
+                System.Threading.Thread.Sleep(10);
+            }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

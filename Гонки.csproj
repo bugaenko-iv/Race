@@ -90,5 +90,8 @@
   <ItemGroup>
     <None Include="флаги.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="гоночный балид.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
