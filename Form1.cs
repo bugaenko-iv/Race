@@ -89,26 +89,52 @@ namespace Гонки
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
-        {
+        {  
         }
 
-        int numY = 331;
+        int numY = 520;
+        private bool movingUp = true;
+        private bool imageRotated = false;
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            mlseconds++;
+            mlseconds += timer1.Interval;
 
-            if (mlseconds == 40)
+            int newSeconds = mlseconds / 1000;
+            label2.Text = newSeconds.ToString();
+
+            if (newSeconds == 4)
             {
                 pictureBox2.Visible = true;
             }
 
-            if (pictureBox2.Visible == true && numY != 12)
+            if (pictureBox2.Visible)
             {
-                pictureBox2.Location = new Point(x: 45, y: numY);
-                numY-=7;
-                pictureBox2.Refresh();
-                System.Threading.Thread.Sleep(10);
+                if (movingUp && numY > -190)
+                {
+                    numY -= 5;
+                }
+                else if (!movingUp && numY < 520)
+                {
+                    numY += 5;
+                }
+
+                pictureBox2.Location = new Point(45, numY);
+
+                if (!imageRotated && (numY <= -190 || numY >= 520))
+                {
+                    pictureBox2.Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                    pictureBox2.Refresh();
+                }
+
+                if (numY <= -190)
+                {
+                    movingUp = false;
+                }
+                else if (numY >= 520)
+                {
+                    movingUp = true;
+                }
             }
         }
 
