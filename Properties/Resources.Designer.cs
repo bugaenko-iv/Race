@@ -73,6 +73,26 @@ namespace Гонки.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap дорога {
+            get {
+                object obj = ResourceManager.GetObject("дорога", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Задний_фон_дороги {
+            get {
+                object obj = ResourceManager.GetObject("Задний фон дороги", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap флаги {
             get {
                 object obj = ResourceManager.GetObject("флаги", resourceCulture);

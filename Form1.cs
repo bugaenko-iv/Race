@@ -50,7 +50,10 @@ namespace Гонки
 
         private void guna2HtmlLabel1_Click(object sender, EventArgs e)
         {
+            Form2 form2 = new Form2();
+            this.Hide();
 
+            form2.Show();
         }
 
         private void guna2HtmlLabel1_MouseEnter(object sender, EventArgs e)
