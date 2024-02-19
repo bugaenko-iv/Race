@@ -14,6 +14,7 @@ namespace Гонки
     public partial class Form2 : Form
     {
         int speed = 4;
+        int speedCar = 60;
 
         public Form2()
         {
@@ -54,8 +55,6 @@ namespace Гонки
 
         private void Form2_KeyDown(object sender, KeyEventArgs e)
         {
-            int speedCar = 8;
-
             if (e.KeyCode == Keys.A || e.KeyCode == Keys.Left)
             {
                 if (pictureBox3.Location.X > 272)
@@ -77,6 +76,22 @@ namespace Гонки
         private void pictureBox3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            speedCar = 0;
+            pictureBox5.Visible = true;
+            pictureBox4.Visible = false;
+        }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+            timer1.Start();
+            speedCar = 60;
+            pictureBox4.Visible = true;
+            pictureBox5.Visible = false;
         }
     }
 }

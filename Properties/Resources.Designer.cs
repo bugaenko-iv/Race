@@ -93,6 +93,26 @@ namespace Гонки.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Кнопка_продолжить {
+            get {
+                object obj = ResourceManager.GetObject("Кнопка продолжить", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Кнопка_стоп {
+            get {
+                object obj = ResourceManager.GetObject("Кнопка стоп", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap флаги {
             get {
                 object obj = ResourceManager.GetObject("флаги", resourceCulture);

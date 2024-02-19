@@ -108,5 +108,11 @@
   <ItemGroup>
     <None Include="Задний фон дороги.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Кнопка стоп.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Кнопка продолжить.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
