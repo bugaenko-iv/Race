@@ -114,5 +114,8 @@
   <ItemGroup>
     <None Include="Кнопка продолжить.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="гоночный балид %28враг%29.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
