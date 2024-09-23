@@ -24,12 +24,18 @@ namespace Гонки
         private bool numXCheck = false;
         Random random = new Random();
 
-
         public Form2()
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
             this.StartPosition = FormStartPosition.CenterScreen;
+        }
+
+        public void restartForm()
+        {
+            Form2 form2 = new Form2();
+            this.Hide();
+            form2.Show();
         }
 
         private void Form2_Load(object sender, EventArgs e)
@@ -70,6 +76,16 @@ namespace Гонки
                 pictureBox6.Location = new Point(numX, numY);
             }
 
+            if (pictureBox6.Location.Y == 504)
+            {
+                numY = -121;
+
+                randomValue = random.Next(1, 3);
+                numX = (randomValue == 1) ? 272 : 392;
+
+                pictureBox6.Location = new Point(numX, numY);
+            }
+
             if (pictureBox6.Visible)
             {
                 numY += 5;
@@ -79,7 +95,7 @@ namespace Гонки
 
             HeroNumX = pictureBox3.Location.X;
 
-            if (HeroNumX == numX)
+            if (HeroNumX == numX || numY >= 160 && numY <= 419 && HeroNumX == 332)
             {
                 numXCheck = true;
             }
@@ -91,6 +107,7 @@ namespace Гонки
             if(numXCheck && numY >= 160 && numY <= 419)
             {
                 timer1.Stop();
+                restartForm();
             }
         }
 

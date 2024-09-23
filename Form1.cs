@@ -52,7 +52,6 @@ namespace Гонки
         {
             Form2 form2 = new Form2();
             this.Hide();
-
             form2.Show();
         }
 
@@ -104,7 +103,6 @@ namespace Гонки
             mlseconds += timer1.Interval;
 
             int newSeconds = mlseconds / 1000;
-            label2.Text = newSeconds.ToString();
 
             if (newSeconds == 4)
             {
@@ -149,6 +147,13 @@ namespace Гонки
         private void label2_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void guna2HtmlLabel2_Click(object sender, EventArgs e)
+        {
+            Form3 form3 = new Form3();
+            this.Hide();
+            form3.Show();
         }
     }
 }
