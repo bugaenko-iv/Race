@@ -15,6 +15,8 @@ namespace Гонки
     {
         string connectionString = "server=localhost;user=root;password=arisandloki;database=dbRace";
 
+        bool isLoginDublicate;
+
         public Form3()
         {
             InitializeComponent();
@@ -56,7 +58,30 @@ namespace Гонки
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(guna2TextBox1.Text) && !string.IsNullOrEmpty(guna2TextBox2.Text))
+            using (MySqlConnection connection2 = new MySqlConnection(connectionString))
+            {
+                connection2.Open();
+
+                string getLoginUserQuery = "select никнейм from Пользователи where никнейм = @никнейм";
+                MySqlCommand commandLoginUser = new MySqlCommand(getLoginUserQuery, connection2);
+                commandLoginUser.Parameters.AddWithValue("@никнейм", guna2TextBox1.Text);
+                object objUsersLogin = commandLoginUser.ExecuteScalar();
+                
+                if(objUsersLogin != null)
+                {
+                    isLoginDublicate = true;
+                    MessageBox.Show("Такой логин уже существует, придумайте новый");
+                }
+                else
+                {
+                    isLoginDublicate = false;
+                }
+
+                connection2.Close();
+            }
+
+
+            if (!string.IsNullOrEmpty(guna2TextBox1.Text) && !string.IsNullOrEmpty(guna2TextBox2.Text) && !isLoginDublicate)
             {
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
