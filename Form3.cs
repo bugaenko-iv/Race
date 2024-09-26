@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace Гонки
 {
     public partial class Form3 : Form
     {
+        string connectionString = "server=localhost;user=root;password=arisandloki;database=dbRace";
+
         public Form3()
         {
             InitializeComponent();
@@ -53,7 +56,30 @@ namespace Гонки
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(guna2TextBox1.Text) || string.IsNullOrEmpty(guna2TextBox2.Text))
+            if (!string.IsNullOrEmpty(guna2TextBox1.Text) && !string.IsNullOrEmpty(guna2TextBox2.Text))
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    try
+                    {
+                        string addNewUserQuery = "insert into Пользователи (никнейм, пароль) values (@никнейм, @пароль)";
+                        MySqlCommand commandAddUser = new MySqlCommand(addNewUserQuery, connection);
+                        commandAddUser.Parameters.AddWithValue("@никнейм", guna2TextBox1.Text);
+                        commandAddUser.Parameters.AddWithValue("@пароль", guna2TextBox2.Text);
+                        commandAddUser.ExecuteNonQuery();
+                        MessageBox.Show("Регистрация прошла успешно");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+
+                    connection.Close();
+                }
+            }
+            else if (string.IsNullOrEmpty(guna2TextBox1.Text) || string.IsNullOrEmpty(guna2TextBox2.Text))
             {
                 MessageBox.Show("Заполните поля");
             }
@@ -69,7 +95,23 @@ namespace Гонки
 
         private void button1_Click(object sender, EventArgs e)
         {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
 
+                    MessageBox.Show("Подключение работает");
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show($"Ошибка подключения к бд: {ex.Message}");
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
         }
     }
 }
