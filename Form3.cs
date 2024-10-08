@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -58,28 +59,30 @@ namespace Гонки
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
-            using (MySqlConnection connection2 = new MySqlConnection(connectionString))
+            if (!string.IsNullOrEmpty(guna2TextBox1.Text) && !string.IsNullOrEmpty(guna2TextBox2.Text))
             {
-                connection2.Open();
-
-                string getLoginUserQuery = "select никнейм from Пользователи where никнейм = @никнейм";
-                MySqlCommand commandLoginUser = new MySqlCommand(getLoginUserQuery, connection2);
-                commandLoginUser.Parameters.AddWithValue("@никнейм", guna2TextBox1.Text);
-                object objUsersLogin = commandLoginUser.ExecuteScalar();
-                
-                if(objUsersLogin != null)
+                using (MySqlConnection connection2 = new MySqlConnection(connectionString))
                 {
-                    isLoginDublicate = true;
-                    MessageBox.Show("Такой логин уже существует, придумайте новый");
-                }
-                else
-                {
-                    isLoginDublicate = false;
-                }
+                    connection2.Open();
 
-                connection2.Close();
+                    string getLoginUserQuery = "select никнейм from Пользователи where никнейм = @никнейм";
+                    MySqlCommand commandLoginUser = new MySqlCommand(getLoginUserQuery, connection2);
+                    commandLoginUser.Parameters.AddWithValue("@никнейм", guna2TextBox1.Text);
+                    object objUsersLogin = commandLoginUser.ExecuteScalar();
+
+                    if (objUsersLogin != null)
+                    {
+                        isLoginDublicate = true;
+                        MessageBox.Show("Такой логин уже существует, придумайте новый");
+                    }
+                    else
+                    {
+                        isLoginDublicate = false;
+                    }
+
+                    connection2.Close();
+                }
             }
-
 
             if (!string.IsNullOrEmpty(guna2TextBox1.Text) && !string.IsNullOrEmpty(guna2TextBox2.Text) && !isLoginDublicate)
             {
@@ -112,7 +115,41 @@ namespace Гонки
 
         private void guna2Button2_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(guna2TextBox3.Text) || string.IsNullOrEmpty(guna2TextBox4.Text))
+            if (!string.IsNullOrEmpty(guna2TextBox3.Text) && !string.IsNullOrEmpty(guna2TextBox4.Text))
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string lookForUserQuery = "select никнейм, пароль from Пользователи where никнейм = @nickname and пароль = @password";
+                    MySqlCommand commandLookForUser = new MySqlCommand(lookForUserQuery, connection);
+                    commandLookForUser.Parameters.AddWithValue("@nickname", guna2TextBox3.Text);
+                    commandLookForUser.Parameters.AddWithValue("@password", guna2TextBox4.Text);
+                    object dataFromBDuser = commandLookForUser.ExecuteScalar();
+
+                    string lookForAdminQuery = "select никнейм, пароль from Администратор where никнейм = @nickname and пароль = @password";
+                    MySqlCommand commandlookForAdmin = new MySqlCommand(lookForAdminQuery, connection);
+                    commandlookForAdmin.Parameters.AddWithValue("@nickname", guna2TextBox3.Text);
+                    commandlookForAdmin.Parameters.AddWithValue("@password", guna2TextBox4.Text);
+                    object dataFromBDadmin = commandlookForAdmin.ExecuteScalar();
+
+                    if (dataFromBDuser != null)
+                    {
+                        MessageBox.Show("Вы вошли в аккаунт как пользователь");
+                    }
+                    else if (dataFromBDadmin != null)
+                    {
+                        MessageBox.Show("Режим аминистратор");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ошибка, данных не существует");
+                    }
+
+                    connection.Close();
+                }
+            }
+            else if (string.IsNullOrEmpty(guna2TextBox3.Text) || string.IsNullOrEmpty(guna2TextBox4.Text))
             {
                 MessageBox.Show("Заполните поля");
             }               
@@ -137,6 +174,49 @@ namespace Гонки
                     connection.Close();
                 }
             }
+        }
+
+
+        //ДОДЕЛАТЬ
+
+        private void guna2TextBox1_TextChanged(object sender, EventArgs e)
+        {
+            string nickname = guna2TextBox1.Text;
+            string specialCharacters = @"[!@#$%^&*()_+\-=\[\]{}|\\:;""'<>,.?\/~]";
+
+            for (int i = 0; i < nickname.Length; i++)
+            {
+                if (nickname.Length < 5)
+                { 
+                    label3.ForeColor = Color.Red;
+                }
+            }
+
+        }
+
+        private void guna2TextBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2TextBox1_MouseEnter(object sender, EventArgs e)
+        {
+            label3.Visible = true;
+        }
+
+        private void guna2TextBox1_MouseLeave(object sender, EventArgs e)
+        {
+            label3.Visible = false;
+        }
+
+        private void guna2TextBox2_MouseEnter(object sender, EventArgs e)
+        {
+            label4.Visible = true;
+        }
+
+        private void guna2TextBox2_MouseLeave(object sender, EventArgs e)
+        {
+            label4.Visible = false;
         }
     }
 }

@@ -41,6 +41,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -49,7 +51,9 @@
             // 
             this.groupBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.groupBox1.Controls.Add(this.groupBox2);
+            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.guna2Button1);
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.guna2TextBox2);
             this.groupBox1.Controls.Add(this.guna2TextBox1);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -67,7 +71,7 @@
             this.groupBox2.Controls.Add(this.guna2TextBox3);
             this.groupBox2.Controls.Add(this.guna2TextBox4);
             this.groupBox2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.groupBox2.Location = new System.Drawing.Point(0, 0);
+            this.groupBox2.Location = new System.Drawing.Point(222, 0);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(376, 301);
             this.groupBox2.TabIndex = 3;
@@ -165,6 +169,9 @@
             this.guna2TextBox2.SelectedText = "";
             this.guna2TextBox2.Size = new System.Drawing.Size(200, 36);
             this.guna2TextBox2.TabIndex = 1;
+            this.guna2TextBox2.TextChanged += new System.EventHandler(this.guna2TextBox2_TextChanged);
+            this.guna2TextBox2.MouseEnter += new System.EventHandler(this.guna2TextBox2_MouseEnter);
+            this.guna2TextBox2.MouseLeave += new System.EventHandler(this.guna2TextBox2_MouseLeave);
             // 
             // guna2TextBox1
             // 
@@ -185,6 +192,9 @@
             this.guna2TextBox1.SelectedText = "";
             this.guna2TextBox1.Size = new System.Drawing.Size(200, 36);
             this.guna2TextBox1.TabIndex = 0;
+            this.guna2TextBox1.TextChanged += new System.EventHandler(this.guna2TextBox1_TextChanged);
+            this.guna2TextBox1.MouseEnter += new System.EventHandler(this.guna2TextBox1_MouseEnter);
+            this.guna2TextBox1.MouseLeave += new System.EventHandler(this.guna2TextBox1_MouseLeave);
             // 
             // label1
             // 
@@ -217,6 +227,30 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.ForeColor = System.Drawing.Color.Gray;
+            this.label3.Location = new System.Drawing.Point(85, 96);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(165, 15);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "5 символов (Aa - Zz, 0 - 9, _)";
+            this.label3.Visible = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.ForeColor = System.Drawing.Color.Gray;
+            this.label4.Location = new System.Drawing.Point(85, 165);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(152, 15);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "9 символов (Aa - Zz, 0 - 9)";
+            this.label4.Visible = false;
+            // 
             // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -230,6 +264,7 @@
             this.Text = "Аккаунт";
             this.Load += new System.EventHandler(this.Form3_Load);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -250,5 +285,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }
